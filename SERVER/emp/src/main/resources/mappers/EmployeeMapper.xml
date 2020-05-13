@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.emp.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.lx.emp.pojo.Employee">
+    <id column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="emp_password" jdbcType="VARCHAR" property="empPassword" />
+    <result column="emp_idcard" jdbcType="VARCHAR" property="empIdcard" />
+    <result column="emp_salerycard" jdbcType="VARCHAR" property="empSalerycard" />
+    <result column="emp_gender" jdbcType="VARCHAR" property="empGender" />
+    <result column="emp_phone" jdbcType="VARCHAR" property="empPhone" />
+    <result column="emp_email" jdbcType="VARCHAR" property="empEmail" />
+    <result column="emp_status" jdbcType="INTEGER" property="empStatus" />
+    <result column="emp_type" jdbcType="VARCHAR" property="empType" />
+    <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    emp_id, emp_no, emp_name, emp_password, emp_idcard, emp_salerycard, emp_gender, emp_phone, 
+    emp_email, emp_status, emp_type, dept_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_emp
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_emp
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lx.emp.pojo.Employee">
+    insert into tb_emp (emp_id, emp_no, emp_name, 
+      emp_password, emp_idcard, emp_salerycard, 
+      emp_gender, emp_phone, emp_email, 
+      emp_status, emp_type, dept_id
+      )
+    values (#{empId,jdbcType=INTEGER}, #{empNo,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{empPassword,jdbcType=VARCHAR}, #{empIdcard,jdbcType=VARCHAR}, #{empSalerycard,jdbcType=VARCHAR}, 
+      #{empGender,jdbcType=VARCHAR}, #{empPhone,jdbcType=VARCHAR}, #{empEmail,jdbcType=VARCHAR}, 
+      #{empStatus,jdbcType=INTEGER}, #{empType,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lx.emp.pojo.Employee">
+    insert into tb_emp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="empPassword != null">
+        emp_password,
+      </if>
+      <if test="empIdcard != null">
+        emp_idcard,
+      </if>
+      <if test="empSalerycard != null">
+        emp_salerycard,
+      </if>
+      <if test="empGender != null">
+        emp_gender,
+      </if>
+      <if test="empPhone != null">
+        emp_phone,
+      </if>
+      <if test="empEmail != null">
+        emp_email,
+      </if>
+      <if test="empStatus != null">
+        emp_status,
+      </if>
+      <if test="empType != null">
+        emp_type,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdcard != null">
+        #{empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empSalerycard != null">
+        #{empSalerycard,jdbcType=VARCHAR},
+      </if>
+      <if test="empGender != null">
+        #{empGender,jdbcType=VARCHAR},
+      </if>
+      <if test="empPhone != null">
+        #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empEmail != null">
+        #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null">
+        #{empStatus,jdbcType=INTEGER},
+      </if>
+      <if test="empType != null">
+        #{empType,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lx.emp.pojo.Employee">
+    update tb_emp
+    <set>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        emp_password = #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdcard != null">
+        emp_idcard = #{empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empSalerycard != null">
+        emp_salerycard = #{empSalerycard,jdbcType=VARCHAR},
+      </if>
+      <if test="empGender != null">
+        emp_gender = #{empGender,jdbcType=VARCHAR},
+      </if>
+      <if test="empPhone != null">
+        emp_phone = #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empEmail != null">
+        emp_email = #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null">
+        emp_status = #{empStatus,jdbcType=INTEGER},
+      </if>
+      <if test="empType != null">
+        emp_type = #{empType,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lx.emp.pojo.Employee">
+    update tb_emp
+    set emp_no = #{empNo,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      emp_password = #{empPassword,jdbcType=VARCHAR},
+      emp_idcard = #{empIdcard,jdbcType=VARCHAR},
+      emp_salerycard = #{empSalerycard,jdbcType=VARCHAR},
+      emp_gender = #{empGender,jdbcType=VARCHAR},
+      emp_phone = #{empPhone,jdbcType=VARCHAR},
+      emp_email = #{empEmail,jdbcType=VARCHAR},
+      emp_status = #{empStatus,jdbcType=INTEGER},
+      emp_type = #{empType,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR}
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </update>
+</mapper>

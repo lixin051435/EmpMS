@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.emp.dao.VacationMapper">
+  <resultMap id="BaseResultMap" type="com.lx.emp.pojo.Vacation">
+    <id column="vacation_id" jdbcType="INTEGER" property="vacationId" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="begin_time" jdbcType="DATE" property="beginTime" />
+    <result column="end_time" jdbcType="DATE" property="endTime" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="approve_name" jdbcType="VARCHAR" property="approveName" />
+    <result column="approve_no" jdbcType="VARCHAR" property="approveNo" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    vacation_id, emp_no, emp_name, begin_time, end_time, reason, approve_name, approve_no, 
+    status, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_vacation
+    where vacation_id = #{vacationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_vacation
+    where vacation_id = #{vacationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lx.emp.pojo.Vacation">
+    insert into tb_vacation (vacation_id, emp_no, emp_name, 
+      begin_time, end_time, reason, 
+      approve_name, approve_no, status, 
+      remark)
+    values (#{vacationId,jdbcType=INTEGER}, #{empNo,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, #{reason,jdbcType=VARCHAR}, 
+      #{approveName,jdbcType=VARCHAR}, #{approveNo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lx.emp.pojo.Vacation">
+    insert into tb_vacation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vacationId != null">
+        vacation_id,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="approveName != null">
+        approve_name,
+      </if>
+      <if test="approveNo != null">
+        approve_no,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vacationId != null">
+        #{vacationId,jdbcType=INTEGER},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="approveName != null">
+        #{approveName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveNo != null">
+        #{approveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lx.emp.pojo.Vacation">
+    update tb_vacation
+    <set>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="approveName != null">
+        approve_name = #{approveName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveNo != null">
+        approve_no = #{approveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vacation_id = #{vacationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lx.emp.pojo.Vacation">
+    update tb_vacation
+    set emp_no = #{empNo,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      reason = #{reason,jdbcType=VARCHAR},
+      approve_name = #{approveName,jdbcType=VARCHAR},
+      approve_no = #{approveNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where vacation_id = #{vacationId,jdbcType=INTEGER}
+  </update>
+</mapper>

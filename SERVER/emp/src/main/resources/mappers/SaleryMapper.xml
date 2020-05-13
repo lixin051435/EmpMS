@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.emp.dao.SaleryMapper">
+  <resultMap id="BaseResultMap" type="com.lx.emp.pojo.Salery">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="work_salery" jdbcType="DECIMAL" property="workSalery" />
+    <result column="allowance" jdbcType="DECIMAL" property="allowance" />
+    <result column="vacation" jdbcType="DECIMAL" property="vacation" />
+    <result column="reward" jdbcType="DECIMAL" property="reward" />
+    <result column="absent" jdbcType="DECIMAL" property="absent" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, emp_no, emp_name, work_salery, allowance, vacation, reward, absent, total, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_salery
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_salery
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lx.emp.pojo.Salery">
+    insert into tb_salery (id, emp_no, emp_name, 
+      work_salery, allowance, vacation, 
+      reward, absent, total, 
+      createtime)
+    values (#{id,jdbcType=INTEGER}, #{empNo,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{workSalery,jdbcType=DECIMAL}, #{allowance,jdbcType=DECIMAL}, #{vacation,jdbcType=DECIMAL}, 
+      #{reward,jdbcType=DECIMAL}, #{absent,jdbcType=DECIMAL}, #{total,jdbcType=DECIMAL}, 
+      #{createtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lx.emp.pojo.Salery">
+    insert into tb_salery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="workSalery != null">
+        work_salery,
+      </if>
+      <if test="allowance != null">
+        allowance,
+      </if>
+      <if test="vacation != null">
+        vacation,
+      </if>
+      <if test="reward != null">
+        reward,
+      </if>
+      <if test="absent != null">
+        absent,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="workSalery != null">
+        #{workSalery,jdbcType=DECIMAL},
+      </if>
+      <if test="allowance != null">
+        #{allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="vacation != null">
+        #{vacation,jdbcType=DECIMAL},
+      </if>
+      <if test="reward != null">
+        #{reward,jdbcType=DECIMAL},
+      </if>
+      <if test="absent != null">
+        #{absent,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lx.emp.pojo.Salery">
+    update tb_salery
+    <set>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="workSalery != null">
+        work_salery = #{workSalery,jdbcType=DECIMAL},
+      </if>
+      <if test="allowance != null">
+        allowance = #{allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="vacation != null">
+        vacation = #{vacation,jdbcType=DECIMAL},
+      </if>
+      <if test="reward != null">
+        reward = #{reward,jdbcType=DECIMAL},
+      </if>
+      <if test="absent != null">
+        absent = #{absent,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lx.emp.pojo.Salery">
+    update tb_salery
+    set emp_no = #{empNo,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      work_salery = #{workSalery,jdbcType=DECIMAL},
+      allowance = #{allowance,jdbcType=DECIMAL},
+      vacation = #{vacation,jdbcType=DECIMAL},
+      reward = #{reward,jdbcType=DECIMAL},
+      absent = #{absent,jdbcType=DECIMAL},
+      total = #{total,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
